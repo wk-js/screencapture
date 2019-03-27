@@ -25,24 +25,21 @@ function Capture()
 
   const filename = Path.join(Dirname, Interpolate(/#+/, Filename, index))
 
-  const before = new Date()
   Screenshot({ format: 'jpg', filename })
   .then(() => {
     console.log(`File ${filename} saved`);
-
-    const after = new Date()
-    const delay = Math.max(Delay - (after - before), 0)
-    setTimeout(Capture, delay);
+    if (!recording) StopCapture()
   })
+  setTimeout(Capture, Delay);
 }
 
-ensureDir(Dirname)
-.then(() => ensureDir(TmpDirname))
-.then(() => {recording = true; Capture()})
+function StartCapture()
+{
+  recording = true;
+  Capture()
+}
 
-process.on('SIGINT', function() {
-  recording = false
-
+function StopCapture() {
   let first = 0
   let concat = null
 
@@ -68,4 +65,12 @@ process.on('SIGINT', function() {
 
   require('./ffmpeg')( description_filename )
   remove(description_filename).then(() => process.exit())
+}
+
+ensureDir(Dirname)
+.then(() => ensureDir(TmpDirname))
+.then(StartCapture)
+
+process.on('SIGINT', function() {
+  recording = false
 })
