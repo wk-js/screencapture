@@ -1,0 +1,16 @@
+{
+  "name": "screencapture",
+  "version": "1.0.0",
+  "description": "",
+  "bin": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@ffmpeg-installer/ffmpeg": "^1.0.17",
+    "asset-pipeline": "github:wk-js/asset-pipeline",
+    "screenshot-desktop": "^1.7.0"
+  }
+}
