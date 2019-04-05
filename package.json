@@ -1,16 +1,24 @@
 {
-  "name": "screencapture",
+  "name": "@tool/dump-logs",
   "version": "1.0.0",
   "description": "",
-  "bin": "index.js",
+  "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "tsc": "tsc",
+    "watch": "tsc --watch",
+    "debug": "node js/index.js",
+    "debug:compile": "tsc && npm run debug"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "@ffmpeg-installer/ffmpeg": "^1.0.17",
     "asset-pipeline": "github:wk-js/asset-pipeline",
+    "lol": "github:makemepulse/lol.js#latest",
     "screenshot-desktop": "^1.7.0"
+  },
+  "devDependencies": {
+    "@types/node": "11.13.0",
+    "typescript": "3.4.1"
   }
 }
